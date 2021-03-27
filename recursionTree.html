@@ -17,8 +17,10 @@
 
 </head>
 <body>
-
-	<button onclick="clearCanvas()">Clear</button>
+	An example of how complex patterns can emerge from simple recursive functions. 
+	<br>
+	<br>
+	<button onclick="clearCanvas()">Clear Screen</button>
 	<button onclick="pickColor(1)">Red</button>
 	<button onclick="pickColor(2)">Orange</button>
 	<button onclick="pickColor(3)">Yellow</button>
@@ -32,6 +34,8 @@
 	<br>
 	<button onclick="growAnimation(0)">Grow off</button>
 	<button onclick="growAnimation(1)">Grow on</button>
+	<br>
+	The recursive function ran <span id="countText"></span> times to generate the last tree.
 	<script>
 
 		WIDTH = 1800;
@@ -46,7 +50,8 @@
 		canvas.height = HEIGHT;
 		ctx = canvas.getContext("2d");
 		document.body.appendChild(canvas);
-
+		count = 0;
+		document.getElementById("countText").innerHTML = count;
 	
 		function clearCanvas()
 		{
@@ -121,7 +126,8 @@
 		ctx.moveTo(x,y);
 		ctx.lineTo(endX, endY);
 		ctx.stroke();
-
+		count++;
+		document.getElementById("countText").innerHTML = count;
 		if(grow)
 			await new Promise(r => setTimeout(r, 40));
 
@@ -136,6 +142,7 @@
 
 	canvas.addEventListener("mousedown", function(e)
 	{
+		count = 0;
 		recurse(e.offsetX, e.offsetY, length, -Math.PI/2, color, color2);
 	});
 
