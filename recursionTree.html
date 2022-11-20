@@ -29,7 +29,15 @@
     <button onclick="pickColor(5)">Purple</button>
     <button onclick="pickColor(6)">Pink</button>
 	<br>
-	<input type="range" name="sliderInput" min="10" max="150" onchange="updateSliderText(this.value);">
+	<br>
+	<label for="colorPicker">Color 1:</label>
+	<input type="color" id="colorPicker" value="#0000ff">
+	<label for="colorPicker2">Color 2:</label>
+	<input type="color" id="colorPicker2" value="#0000ff">
+	<br>
+	Size:
+	<br>
+	<input type="range" name="sliderInput" min="10" max="300" onchange="updateSliderText(this.value);">
 	<input type="text" id="textInput" value="" size="1" disabled>
 	<br>
 	<button onclick="growAnimation(0)">Grow off</button>
@@ -40,8 +48,8 @@
 
 		WIDTH = 1800;
 		HEIGHT = 870; //550
-		color = '#27ae60'; // green
-        color2 = '#1b72e8'; // blue
+		color = document.getElementById("colorPicker").value; //'#27ae60'; // green
+        color2 = document.getElementById("colorPicker2").value; //'#1b72e8'; // blue
 		length = document.getElementById('textInput').value;
 		grow = false;
 
@@ -75,32 +83,32 @@
 		{
 			switch(i) {
 				case 0: // green with blue
-					color = '#27ae60';
-                    color2 = '#1b72e8';
+					document.getElementById("colorPicker").value = '#27ae60';
+                    document.getElementById("colorPicker2").value = '#1b72e8';
 					break;
 				case 1: // red with orange
-					color = '#99174c';
-                    color2 = '#dc911f';
+					document.getElementById("colorPicker").value = '#99174c';
+                    document.getElementById("colorPicker2").value = '#dc911f';
 					break;
 				case 2: // orange with red
-					color = '#dc911f';
-                    color2 = '#99174c';
+					document.getElementById("colorPicker").value = '#dc911f';
+                    document.getElementById("colorPicker2").value = '#99174c';
 					break;
 				case 3: // yellow with pink
-					color = '#e8b91b';
-                    color2 = '#f01de6';
+					document.getElementById("colorPicker").value = '#e8b91b';
+                    document.getElementById("colorPicker2").value = '#f01de6';
 					break;
 				case 4: // blue with yellow
-					color = '#1b72e8';
-                    color2 = '#e8b91b';
+					document.getElementById("colorPicker").value = '#1b72e8';
+                    document.getElementById("colorPicker2").value = '#e8b91b';
 					break;
 				case 5: // purple with blue
-					color = '#811be8';
-                    color2 = '#1b72e8';
+					document.getElementById("colorPicker").value = '#811be8';
+                    document.getElementById("colorPicker2").value = '#1b72e8';
                     break;
                 case 6: // pink with yellow
-                    color = '#f01de6';
-                    color2 = '#e8b91b';
+					document.getElementById("colorPicker").value = '#f01de6';
+                    document.getElementById("colorPicker2").value = '#e8b91b';
                     break;
 			};
 		}
@@ -142,6 +150,8 @@
 
 	canvas.addEventListener("mousedown", function(e)
 	{
+		color = document.getElementById("colorPicker").value;
+		color2 = document.getElementById("colorPicker2").value;
 		count = 0;
 		recurse(e.offsetX, e.offsetY, length, -Math.PI/2, color, color2);
 	});
